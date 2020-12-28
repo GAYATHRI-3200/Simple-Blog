@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% load static %}
+
+<style type="text/css">
+
+	@media (max-width: 768px) { 
+		.right-column{
+			margin-left: 0px;
+		}
+	}
+
+	@media (min-width: 768px) { 
+		.right-column{
+			margin-left: 20px;
+		}
+	}
+
+	.app-post-container{
+		margin-bottom: 20px;
+		width: 100%;
+	}
+	.create-post-bar{
+		background-color: #fff;
+		margin-bottom:20px;
+	}
+
+	.left-column{
+		padding:0px;
+	}
+
+	.right-column{
+		padding:0px;
+	}
+	.lead{
+		font-size: 17px;
+	}
+
+	
+</style>
+
+<div class="d-flex flex-column pb-2">
+	<img  class="img-fluid mx-auto d-block"  src="{% static 'tables.jpg' %}" alt="gayathri project" width="auto" height="20%">
+</div>
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+	<h1 class="display-4">Restraunt Table Booking</h1>
+	<p  class="lead"><b>A table reservation is an arrangement made in advance to have a table available at a restaurant. While most restaurants in the vast majority of the world do not require a reservation, and some do not have a policy or simply any channel for making one, so-called higher-end restaurants mainly in overcrowded cities often require a reservation, and some may have tables booked for weeks in advance. At particularly exclusive venues, it may be impossible to make a reservation on the same day as the planned visit.</b></p>
+</div>
+
+<!-- main content -->
+<div class="container">
+	<div class="row">
+
+		<!-- blog feed -->
+		<div class="left-column col-lg-7 offset-lg-1">
+
+			<!-- Top 'create post' bar -->
+			<div class="d-lg-none mb-3">
+				<div class="card m-auto d-flex flex-column p-3">
+					<img class="img-fluid d-block m-auto pb-2" src="{% static 'tables.jpg' %}" width="72" height="72">
+					<p class="lead">In this course you'll learn how to build a simple blog with user registration and blog CRUD functionality. Django is a powerful 
+	  					framework and you'll see why in this course.</p>
+					<p class="m-auto"><a class="btn btn-primary" href="{% url 'app:create' %}">Create post</a></p>
+				</div>
+			</div>
+			<!-- end Top 'create post' bar -->
+
+			<!-- Blog posts-->
+			{% if app_posts %}
+				{% for post in app_posts %}
+					<div class="app-post-container">
+						{% include 'app/snippets/app_post_snippet.html' with app_post=post %}
+					</div>
+				{% endfor %}
+			{% else %}
+				<div class="app-post-container">
+					{% include 'app/snippets/app_post_snippet.html' with query=query %}
+				</div>
+			{% endif %}
+			<!-- End Blog posts-->
+
+		<!-- Pagination -->
+		{% include 'app/snippets/app_post_pagination.html' with app_posts=app_posts %}
+
+		</div>
+		<!-- end blog feed -->
+
+
+
+		<!-- Right 'create post' column  -->
+		<div class="right-column col-lg-3 d-lg-flex d-none flex-column">
+
+			<div class="card create-post-bar d-flex flex-column p-3">
+				<img class="img-fluid d-block m-auto pb-2" src="{% static 'tables.jpg' %}" width="72" height="72">
+				<p class="lead">In this course you'll learn how to build a simple blog with user registration and blog CRUD functionality. Django is a powerful 
+  					framework and you'll see why in this course.</p>
+				<p class="m-auto"><a class="btn btn-primary" href="{% url 'app:create' %}">Create post</a></p>
+			</div>
+		
+		</div>
+		<!-- end Right 'create post' column  -->
+
+		
+
+	</div>
+</div>
+{% endblock content %}
+
+<!--
+	
+<div class="d-flex flex-column pb-2">
+	<img  class="img-fluid mx-auto d-block"  src="{% static 'tables.jpg' %}" alt="gayathri project" width="150%" height="20%">
+</div>
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+	<h1 class="display-4">Restraunt Table Booking</h1>
+	<p  class="lead"><b>A table reservation is an arrangement made in advance to have a table available at a restaurant. While most restaurants in the vast majority of the world do not require a reservation, and some do not have a policy or simply any channel for making one, so-called higher-end restaurants mainly in overcrowded cities often require a reservation, and some may have tables booked for weeks in advance. At particularly exclusive venues, it may be impossible to make a reservation on the same day as the planned visit.</b></p>
+</div>-->
+
+
+
+<!--<div class="container">
+
+	<div class="row">
+	<div class="d.flex flex-column">
+		<h4> Registered users</h4>
+		{% for account in accounts %}
+	 	<p>{{account}}</p>
+		{% endfor %}-->
+	
+	<!-- right create postcolumn
+		<div class="create-post-bar d-lg-none col-lg-7 offset-lg-1" style="border:1px solid #000;">
+			<a href="{% url 'app:create'%}">createpost</a>	
+
+		</div>
+
+	end postcolymn
+	 blog post
+		<div class="left-column col-lg-7 offset-lg-1" style="border:1px solid #000;">
+			<div class="blog-post-container">
+				<p>things</p>
+			</div>
+
+			<div class="blog-post-container">
+				<p>things</p>
+			</div>
+				
+			<div class="blog-post-container">
+				<p>things</p>
+			</div>
+				
+			<div class="blog-post-container">
+				<p>things</p>
+			</div>					
+		</div>
+
+	end blog
+
+	 right create postcolumn
+		<div class="right-column col-lg-3 d-lg-flex d-none flex-column" style="border:1px solid #000;">
+			<div class="create-post-bar">
+				<p>me</p>
+				<p>me</p>
+				<p>me</p>
+				<p>me</p>
+				<a href="{% url 'app:create'%}">createpost</a>
+			</div>	
+		</div>
+
+	
+
+
+
+	</div>	
+</div>-->
